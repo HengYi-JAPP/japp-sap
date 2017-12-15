@@ -1,0 +1,13 @@
+apply plugin: 'war'
+war {
+    archiveName 'sap.war'
+}
+dependencies {
+    compile 'com.sap:sapjco3:3.0.9'
+    compile project(':japp-sap-core')
+    compile "org.jzb:jzb-web:${jzbVersion}"
+    compileOnly 'org.jboss.resteasy:resteasy-multipart-provider:3.0.16.Final'
+    compileOnly libraries.javaee_api
+    compileOnly libraries.hibernate_validator
+    compileOnly libraries.jpa_modelgen
+}

@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.hengyi.japp.sap.grpc.server";
+option java_outer_classname = "SapServerProto";
+option objc_class_prefix = "SSP";
+
+package sap_server;
+
+service SapServer {
+    // 执行 sap rfc
+    rpc ExeRfc (ExeRfcRequest) returns (ExeRfcReply) {
+    }
+
+    rpc RegisteRfcHandler (RegisteRfcHandlerRequest) returns (RegisteRfcHandlerReply) {
+    }
+
+    rpc UnRegisteRfcHandler (UnRegisteRfcHandlerRequest) returns (UnRegisteRfcHandlerReply) {
+    }
+}
+
+message SapSysDef {
+    enum DestType {
+        PRO = 0;
+        EQ = 1;
+        DEV = 2;
+    }
+    DestType destType = 1;
+    string client = 2;
+    string user = 3;
+    string passwd = 4;
+}
+
+message ExeRfcRequest {
+    SapSysDef sysDef = 1;
+    string rfcName = 2;
+    string imports = 3;
+    string tables = 4;
+    string changings = 5;
+}
+
+message ExeRfcReply {
+    string exports = 1;
+    string tables = 2;
+    string changings = 3;
+}
+
+message RegisteRfcHandlerRequest {
+    SapSysDef sysDef = 1;
+    string rfcName = 2;
+    string progid = 3;
+    string clientHost = 4;
+    int32 clientPort = 5;
+}
+
+message RegisteRfcHandlerReply {
+    bool success = 1;
+}
+
+message UnRegisteRfcHandlerRequest {
+    SapSysDef sysDef = 1;
+    string rfcName = 2;
+    string progid = 3;
+    string clientHost = 4;
+    int32 clientPort = 5;
+}
+
+message UnRegisteRfcHandlerReply {
+    bool success = 1;
+}

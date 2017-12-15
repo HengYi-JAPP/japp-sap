@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.hengyi.japp.sap.grpc.client";
+option java_outer_classname = "SapClientProto";
+option objc_class_prefix = "SCP";
+
+package sap_client;
+
+service SapClient {
+    rpc handleRfcCallback (HandleRfcCallbackRequest) returns (HandleRfcCallbackReply) {
+    }
+}
+
+message HandleRfcCallbackRequest {
+    string imports = 1;
+    string exports = 2;
+    string tables = 3;
+    string changings = 4;
+}
+
+message HandleRfcCallbackReply {
+    string imports = 1;
+    string exports = 2;
+    string tables = 3;
+    string changings = 4;
+}
