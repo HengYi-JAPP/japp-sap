@@ -49,8 +49,7 @@ public class RfcClientGrpcImpl implements RfcClient {
             return INSTANCE;
         }
         INSTANCE = new RfcClientGrpcImpl("fp.hengyi.com", GRPC_PORT);
-        // INSTANCE = new RfcClientGrpcImpl("192.168.0.97", GRPC_PORT);
-//        INSTANCE = new RfcClientGrpcImpl("localhost", GRPC_PORT);
+        // INSTANCE = new RfcClientGrpcImpl("localhost", GRPC_PORT);
         return INSTANCE;
     }
 

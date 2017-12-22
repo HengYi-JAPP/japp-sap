@@ -8,7 +8,6 @@ package com.hengyi.japp.sap.server.interfaces.rest;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.jsonwebtoken.ExpiredJwtException;
-import org.jzb.exception.JException;
 import org.jzb.exception.JMultiThrowable;
 import org.jzb.exception.JThrowable;
 import org.slf4j.Logger;
@@ -36,15 +35,15 @@ public class JappExceptionMapper implements ExceptionMapper<Throwable> {
         Response.ResponseBuilder builder = Response.status(Status.FORBIDDEN);
         ArrayNode errors = MAPPER.createArrayNode();
         if (ex instanceof JThrowable) {
-            JThrowable jex = (JException) ex;
+            JThrowable jex = (JThrowable) ex;
             errors.add(jex.toJsonNode());
         } else if (ex instanceof JMultiThrowable) {
             JMultiThrowable jex = (JMultiThrowable) ex;
-            jex.jThrowables().stream()
-                    .map(JThrowable::toJsonNode)
-                    .forEach(errors::add);
+            errors.addAll(jex.toJsonNode());
         } else if (ex instanceof ExpiredJwtException) {
             errors.add(MAPPER.createObjectNode().put("errorCode", TOKEN_EXPIRED));
+        } else if (ex.getCause() != null) {
+            return toResponse(ex.getCause());
         } else {
             log.error("", ex);
             ObjectNode error = MAPPER.createObjectNode()

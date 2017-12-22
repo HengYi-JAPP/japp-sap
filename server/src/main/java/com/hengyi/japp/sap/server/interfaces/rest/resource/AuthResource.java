@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static org.jzb.Constant.MAPPER;
@@ -24,13 +23,12 @@ public class AuthResource {
     private OperatorRepository operatorRepository;
 
     @GET
-    public Response create(@Valid @NotBlank @QueryParam("id") String id,
+    public JsonNode create(@Valid @NotBlank @QueryParam("id") String id,
                            @Valid @NotBlank @QueryParam("password") String password) throws Exception {
-        JsonNode result = operatorRepository.find(id, password)
+        return operatorRepository.find(id, password)
                 .map(Util::jwtToken)
                 .map(token -> MAPPER.createObjectNode().put("token", token))
                 .orElseThrow(() -> new RuntimeException());
-        return Response.ok(result).build();
     }
 
 }

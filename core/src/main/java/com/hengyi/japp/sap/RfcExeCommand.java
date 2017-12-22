@@ -34,6 +34,10 @@ public class RfcExeCommand extends SapSystemDefine {
         this.imports = imports;
     }
 
+    public void setImportsByJsonString(String jsonString) throws IOException {
+        this.imports = toJsonNode(jsonString);
+    }
+
     public JsonNode getChangings() {
         return changings;
     }
@@ -42,12 +46,20 @@ public class RfcExeCommand extends SapSystemDefine {
         this.changings = changings;
     }
 
+    public void setChangingsByJsonString(String jsonString) throws IOException {
+        this.changings = toJsonNode(jsonString);
+    }
+
     public JsonNode getTables() {
         return tables;
     }
 
     public void setTables(JsonNode tables) {
         this.tables = tables;
+    }
+
+    public void setTablesByJsonString(String jsonString) throws IOException {
+        this.tables = toJsonNode(jsonString);
     }
 
     private JsonNode toJsonNode(String s) throws IOException {
