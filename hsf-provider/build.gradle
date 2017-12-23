@@ -1,0 +1,27 @@
+apply plugin: 'war'
+
+dependencies {
+    compile project(':japp-sap-core'),
+            project(':japp-sap-client'),
+            libraries.hibernate_validator,
+            "org.springframework:spring-core:${springVersion}",
+            "org.springframework:spring-web:${springVersion}",
+            "org.springframework:spring-webmvc:${springVersion}",
+            "org.springframework:spring-aop:${springVersion}",
+            "org.springframework:spring-tx:${springVersion}",
+            "org.springframework:spring-jdbc:${springVersion}",
+            "org.springframework:spring-context:${springVersion}",
+            "org.springframework:spring-context-support:${springVersion}",
+//            "org.quartz-scheduler:quartz:2.2.1",
+//            "org.quartz-scheduler:quartz-jobs:2.2.1",
+            "mysql:mysql-connector-java:5.1.38",
+            "com.alibaba:druid:1.0.12",
+            "com.alibaba.edas:edas-sdk:1.5.4",
+            "com.aliyun.oss:aliyun-sdk-oss:2.7.0",
+            "commons-discovery:commons-discovery:0.2",
+            "javax.xml:jaxrpc-api:1.1",
+            "org.logback-extensions:logback-ext-spring:0.1.4"
+
+    testCompile "org.springframework:spring-test:${springVersion}",
+            libraries.javaee_api
+}

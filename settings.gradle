@@ -2,8 +2,9 @@ rootProject.name = 'japp-sap'
 include ':japp-sap-core'
 include ':japp-sap-server'
 include ':japp-sap-client'
+include ':japp-sap-hsf-provider'
 
 project(':japp-sap-core').projectDir = "$rootDir/core" as File
 project(':japp-sap-server').projectDir = "$rootDir/server" as File
 project(':japp-sap-client').projectDir = "$rootDir/client" as File
-
+project(':japp-sap-hsf-provider').projectDir = "$rootDir/hsf-provider" as File

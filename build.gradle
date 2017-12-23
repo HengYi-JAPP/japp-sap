@@ -11,6 +11,7 @@ allprojects {
     ext {
         jzbVersion = '1.0'
         grpcVersion = '1.6.1'
+        springVersion = '4.1.1.RELEASE'
         libraries = [
                 okhttp             : 'com.squareup.okhttp3:okhttp:3.9.0',
                 javaee_api         : "javax:javaee-api:7.0",
